@@ -1,13 +1,14 @@
-package com.github.makewheels.android.video2022;
+package com.github.makewheels.android.video2022.launch;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.makewheels.android.video2022.main.MainActivity;
+import com.github.makewheels.android.video2022.R;
 import com.github.makewheels.android.video2022.utils.HttpUtils;
 import com.github.makewheels.android.video2022.utils.TokenUtil;
 import com.github.makewheels.android.video2022.utils.UserHttpUtils;

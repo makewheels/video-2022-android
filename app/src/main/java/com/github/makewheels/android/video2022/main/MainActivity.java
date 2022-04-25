@@ -1,12 +1,14 @@
-package com.github.makewheels.android.video2022;
+package com.github.makewheels.android.video2022.main;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.alibaba.fastjson.JSONObject;
-import com.github.makewheels.android.video2022.utils.HttpUtils;
+import com.github.makewheels.android.video2022.R;
+import com.github.makewheels.android.video2022.home.HomeFragment;
+import com.github.makewheels.android.video2022.upload.UploadFragment;
+import com.github.makewheels.android.video2022.user.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,14 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 .setViewPager(R.id.view_pager)
                 .addFragmentAndMenuItem(new HomeFragment(), R.id.item_nav_home)
                 .addFragmentAndMenuItem(new UploadFragment(), R.id.item_nav_upload)
+                .addFragmentAndMenuItem(new UserFragment(), R.id.item_nav_user)
                 .build();
     }
 
-    private void getVideos() {
-        int skip = 0;
-        int limit = 0;
-        new Thread(() -> {
-            JSONObject res = HttpUtils.get("/video/getMyVideoList?skip=" + skip + "&limit=" + limit);
-        }).start();
-    }
 }

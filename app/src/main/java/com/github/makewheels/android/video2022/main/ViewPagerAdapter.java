@@ -1,4 +1,4 @@
-package com.github.makewheels.android.video2022;
+package com.github.makewheels.android.video2022.main;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

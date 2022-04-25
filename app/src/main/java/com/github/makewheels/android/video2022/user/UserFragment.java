@@ -1,4 +1,4 @@
-package com.github.makewheels.android.video2022;
+package com.github.makewheels.android.video2022.user;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.github.makewheels.android.video2022.R;
 
 /**
  * A simple {@link Fragment} subclass.

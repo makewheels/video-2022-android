@@ -1,4 +1,4 @@
-package com.github.makewheels.android.video2022;
+package com.github.makewheels.android.video2022.launch;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.makewheels.android.video2022.main.MainActivity;
+import com.github.makewheels.android.video2022.R;
 import com.github.makewheels.android.video2022.utils.ToastUtil;
 import com.github.makewheels.android.video2022.utils.TokenUtil;
 import com.github.makewheels.android.video2022.utils.UserHttpUtils;
@@ -56,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                     runOnUiThread(() -> ToastUtil.error(LoginActivity.this, res.getString("message")));
                 } else {
                     //校验通过，保存token，跳转主页
-                    runOnUiThread(() -> ToastUtil.success(LoginActivity.this, "Login success!"));
+//                    runOnUiThread(() -> ToastUtil.success(getApplicationContext(), "Login success!"));
                     SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     JSONObject data = res.getJSONObject("data");
