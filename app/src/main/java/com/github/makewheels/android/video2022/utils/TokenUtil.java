@@ -1,4 +1,4 @@
-package com.github.makewheels.android.video2022;
+package com.github.makewheels.android.video2022.utils;
 
 public class TokenUtil {
     private static String token;

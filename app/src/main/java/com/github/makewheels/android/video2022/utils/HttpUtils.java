@@ -1,4 +1,4 @@
-package com.github.makewheels.android.video2022;
+package com.github.makewheels.android.video2022.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

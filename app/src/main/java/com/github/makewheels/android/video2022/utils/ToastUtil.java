@@ -1,4 +1,4 @@
-package com.github.makewheels.android.video2022;
+package com.github.makewheels.android.video2022.utils;
 
 import android.content.Context;
 import android.widget.Toast;
