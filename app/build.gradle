@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.aliyun.dpa:oss-android-sdk:2.9.11'
 //    implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation 'cn.hutool:hutool-all:5.7.22'
-
+    implementation 'com.alibaba:fastjson:1.1.72.android'
+    implementation 'com.github.GrenderG:Toasty:1.5.2'
 
 }
