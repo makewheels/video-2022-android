@@ -12,7 +12,7 @@ public class HttpUtils {
     private static Boolean isDevEnv;
 
     public static String getDevPcIpAddress() {
-        return "10.187.11.244";
+        return "10.187.19.136";
     }
 
     public static boolean isDevEnv() {

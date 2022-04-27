@@ -13,7 +13,6 @@ import java.util.List;
 
 public class BottomNavigationController {
     private static class Holder {
-
         private static final BottomNavigationController INSTANCE = new BottomNavigationController();
     }
 
