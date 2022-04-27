@@ -76,7 +76,6 @@ public class ProgressActivity extends AppCompatActivity {
                     null, null, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
                     result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                    Log.e("tag", result);
                 }
             }
         }
