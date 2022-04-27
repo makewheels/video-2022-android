@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Video2022android"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".upload.ProgressActivity"
+            android:exported="false" />
+        <activity
             android:name=".upload.TransferActivity"
             android:exported="false" />
         <activity

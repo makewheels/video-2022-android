@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
 //                            "You clicked " + position + " on row number " + position,
 //                            Toast.LENGTH_SHORT).show();
 //                });
-                Log.e("tag", res.toJSONString());
+              //  Log.e("tag", res.toJSONString());
 
                 rv_video_list.setAdapter(adapter);
             });

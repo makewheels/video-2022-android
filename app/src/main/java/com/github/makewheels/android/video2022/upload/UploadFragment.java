@@ -1,12 +1,17 @@
 package com.github.makewheels.android.video2022.upload;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
 import com.github.makewheels.android.video2022.R;
@@ -31,9 +36,18 @@ public class UploadFragment extends Fragment {
     }
 
     private void addListeners() {
-        btn_upload_from_gallery.setOnClickListener(v -> {
+        ActivityResultLauncher<String> mGetContent = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri == null) {
+                        return;
+                    }
+                    Intent intent = new Intent(getActivity(), ProgressActivity.class);
+                    intent.putExtra("uri", uri);
+                    startActivity(intent);
+                });
+        btn_upload_from_gallery.setOnClickListener(v -> mGetContent.launch("video/*"));
 
-        });
         btn_transfer.setOnClickListener(v -> startActivity(new Intent(getActivity(), TransferActivity.class)));
     }
 

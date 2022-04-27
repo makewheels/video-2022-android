@@ -27,7 +27,7 @@ public class LaunchActivity extends AppCompatActivity {
             JSONObject res = HttpUtils.get("/app/checkUpdate?platform=android");
             JSONObject data = res.getJSONObject("data");
             //如果版本落后
-            if (data.getInteger("latestVersionCode") > 1) {
+            if (data.getInteger("versionCode") > 1) {
                 //如果不是强制更新，检查登陆状态，继续往下跳转
                 if (!data.getBoolean("isForceUpdate")) {
                     checkLogin();
