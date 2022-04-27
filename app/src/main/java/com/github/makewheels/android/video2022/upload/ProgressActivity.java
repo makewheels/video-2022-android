@@ -9,7 +9,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -37,9 +39,14 @@ public class ProgressActivity extends AppCompatActivity {
     private TextView tv_percent;
     private TextView tv_shortUrl;
     private Button btn_copy_shortUrl;
+    private EditText et_title;
+    private EditText et_description;
+    private Button btn_updateVideoInfo;
 
     private Uri uri;
     private OSS oss;
+
+    private String videoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +63,36 @@ public class ProgressActivity extends AppCompatActivity {
         tv_percent = findViewById(R.id.tv_percent);
         tv_shortUrl = findViewById(R.id.tv_shortUrl);
         btn_copy_shortUrl = findViewById(R.id.btn_copy_shortUrl);
+        et_title = findViewById(R.id.et_title);
+        et_description = findViewById(R.id.et_description);
+        btn_updateVideoInfo = findViewById(R.id.btn_updateVideoInfo);
     }
 
     private void addListeners() {
+        //复制分享url按钮
         btn_copy_shortUrl.setOnClickListener(v -> {
             String shortUrl = tv_shortUrl.getText().toString();
             ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
             ClipData clipData = ClipData.newPlainText("shareUrl", shortUrl);
             clipboardManager.setPrimaryClip(clipData);
             ToastUtil.success(ProgressActivity.this, "Copied!");
+        });
+
+        //修改视频信息按钮
+        btn_updateVideoInfo.setOnClickListener(v -> {
+            if (videoId == null) return;
+            JSONObject request = new JSONObject();
+            request.put("id", videoId);
+            request.put("title", et_title.getText().toString());
+            request.put("description", et_description.getText().toString());
+            new Thread(() -> {
+                JSONObject response = HttpUtils.post("/video/updateInfo", request.toJSONString());
+                if (response.getInteger("code") == 0) {
+                    runOnUiThread(() -> ToastUtil.success(ProgressActivity.this, "Updated"));
+                } else {
+                    runOnUiThread(() -> ToastUtil.error(ProgressActivity.this, response.getString("message")));
+                }
+            }).start();
         });
     }
 
@@ -115,6 +143,7 @@ public class ProgressActivity extends AppCompatActivity {
         createRequest.put("originalFilename", filename);
         JSONObject createResponse = HttpUtils.post("/video/create", createRequest.toJSONString());
         JSONObject createResponseData = createResponse.getJSONObject("data");
+        videoId = createResponseData.getString("videoId");
         String shortUrl = createResponseData.getString("shortUrl");
         runOnUiThread(() -> {
             tv_shortUrl.setText(shortUrl);
@@ -142,6 +171,7 @@ public class ProgressActivity extends AppCompatActivity {
         uploadRequest.setProgressCallback((request, currentSize, totalSize) -> {
             double percent = currentSize * 1.0 / totalSize * 100;
             runOnUiThread(() -> {
+                tv_fileSize.setText(FileUtil.readableFileSize(currentSize) + " / " + FileUtil.readableFileSize(totalSize));
                 progressBar.setProgress((int) percent);
                 tv_percent.setText(String.format("%.2f", percent) + "%");
             });

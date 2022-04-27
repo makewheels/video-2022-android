@@ -1,12 +1,12 @@
 package com.github.makewheels.android.video2022.home;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,13 +44,14 @@ public class HomeFragment extends Fragment {
             getActivity().runOnUiThread(() -> {
 
                 rv_video_list.setLayoutManager(new LinearLayoutManager(getActivity()));
+                rv_video_list.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
                 adapter = new VideoRecyclerViewAdapter(getActivity(), videos);
 //                adapter.setClickListener((view, position) -> {
 //                    Toast.makeText(getActivity(),
 //                            "You clicked " + position + " on row number " + position,
 //                            Toast.LENGTH_SHORT).show();
 //                });
-              //  Log.e("tag", res.toJSONString());
+                //  Log.e("tag", res.toJSONString());
 
                 rv_video_list.setAdapter(adapter);
             });

@@ -36,7 +36,7 @@ public class HttpUtils {
         if (isDevEnv()) {
             return "http://" + getDevPcIpAddress() + ":5021";
         } else {
-            return "https://videoplus.top";
+            return "https://videoplus.top:5021";
         }
     }
 
