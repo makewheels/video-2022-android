@@ -48,12 +48,12 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter<VideoRecycler
         holder.tv_title.setText(title);
         int minute;
         int second;
-        long duration = video.getLong("duration");
+        long duration = video.getLongValue("duration");
         duration /= 1000;
         minute = (int) (duration / 60);
         second = (int) (duration % 60);
         holder.tv_duration.setText(minute + ":" + second);
-        holder.tv_watchCount.setText("views: " + video.getInteger("watchCount") + "");
+        holder.tv_watchCount.setText("views: " + video.getIntValue("watchCount") + "");
         holder.tv_createTime.setText(DateUtil.formatDateTime(video.getDate("createTime")));
     }
 
