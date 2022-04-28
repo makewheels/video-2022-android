@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.makewheels.android.video2022.main.MainActivity;
 import com.github.makewheels.android.video2022.R;
+import com.github.makewheels.android.video2022.main.MainActivity;
 import com.github.makewheels.android.video2022.utils.HttpUtils;
 import com.github.makewheels.android.video2022.utils.TokenUtil;
 import com.github.makewheels.android.video2022.utils.UserHttpUtils;
@@ -78,4 +78,5 @@ public class LaunchActivity extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
+
 }
