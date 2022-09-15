@@ -72,8 +72,10 @@ public class ProgressActivity extends AppCompatActivity {
         //复制分享url按钮
         btn_copy_shortUrl.setOnClickListener(v -> {
             String shortUrl = tv_shortUrl.getText().toString();
+            String title = et_title.getText().toString();
             ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-            ClipData clipData = ClipData.newPlainText("shareUrl", shortUrl);
+            String copy = "【" + title + "】\n" + shortUrl;
+            ClipData clipData = ClipData.newPlainText("btn_copy_shortUrl", copy);
             clipboardManager.setPrimaryClip(clipData);
             ToastUtil.success(ProgressActivity.this, "Copied!");
         });

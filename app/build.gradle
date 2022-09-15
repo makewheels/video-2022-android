@@ -28,6 +28,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.github.makewheels.android.video2022'
 }
 
 dependencies {
