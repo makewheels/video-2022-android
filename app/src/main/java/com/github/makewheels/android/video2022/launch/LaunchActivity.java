@@ -12,7 +12,6 @@ import com.github.makewheels.android.video2022.R;
 import com.github.makewheels.android.video2022.main.MainActivity;
 import com.github.makewheels.android.video2022.utils.HttpUtils;
 import com.github.makewheels.android.video2022.utils.TokenUtil;
-import com.github.makewheels.android.video2022.utils.UserHttpUtils;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -57,7 +56,7 @@ public class LaunchActivity extends AppCompatActivity {
             return;
         }
         new Thread(() -> {
-            JSONObject res = UserHttpUtils.get("/user/getUserByToken?token=" + token);
+            JSONObject res = HttpUtils.get("/user/getUserByToken?token=" + token);
             //如果校验未通过，跳转登录页
             if (res.getInteger("code") == 1001) {
                 jumpToLogin();

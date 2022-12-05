@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.makewheels.android.video2022.R;
 import com.github.makewheels.android.video2022.utils.HttpUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -44,15 +45,20 @@ public class HomeFragment extends Fragment {
         int skip = 0;
         int limit = 100;
         new Thread(() -> {
+            List<JSONObject> videos = new ArrayList<>();
             JSONObject res = HttpUtils.get("/video/getMyVideoList?skip=" + skip + "&limit=" + limit);
-            List<JSONObject> videos = res.getJSONArray("data").toJavaList(JSONObject.class);
+            if (res != null) {
+                videos = res.getJSONArray("data").toJavaList(JSONObject.class);
+            }
 
+            List<JSONObject> finalVideos = videos;
             getActivity().runOnUiThread(() -> {
                 rv_video_list.setLayoutManager(new LinearLayoutManager(getActivity()));
                 rv_video_list.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-                adapter = new VideoRecyclerViewAdapter(getActivity(), videos);
-                Log.e("tag", res.toJSONString());
-
+                adapter = new VideoRecyclerViewAdapter(getActivity(), finalVideos);
+                if (res != null) {
+                    Log.e("tag", res.toJSONString());
+                }
                 rv_video_list.setAdapter(adapter);
             });
         }).start();

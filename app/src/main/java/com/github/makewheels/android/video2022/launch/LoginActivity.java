@@ -9,11 +9,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.makewheels.android.video2022.main.MainActivity;
 import com.github.makewheels.android.video2022.R;
+import com.github.makewheels.android.video2022.main.MainActivity;
+import com.github.makewheels.android.video2022.utils.HttpUtils;
 import com.github.makewheels.android.video2022.utils.ToastUtil;
 import com.github.makewheels.android.video2022.utils.TokenUtil;
-import com.github.makewheels.android.video2022.utils.UserHttpUtils;
 
 public class LoginActivity extends AppCompatActivity {
     private TextView et_phone;
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_get_sms_code.setOnClickListener(v -> {
             phone = et_phone.getText().toString();
             new Thread(() -> {
-                UserHttpUtils.get("/user/requestVerificationCode?phone=" + phone);
+                HttpUtils.get("/user/requestVerificationCode?phone=" + phone);
                 runOnUiThread(() -> ToastUtil.info(LoginActivity.this, "Sms has sent"));
             }).start();
         });
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_submit.setOnClickListener(v -> {
             String code = et_code.getText().toString();
             new Thread(() -> {
-                JSONObject res = UserHttpUtils.get("/user/submitVerificationCode?phone=" + phone + "&code=" + code);
+                JSONObject res = HttpUtils.get("/user/submitVerificationCode?phone=" + phone + "&code=" + code);
                 //校验失败，提示信息
                 if (res.getInteger("code") != 0) {
                     runOnUiThread(() -> ToastUtil.error(LoginActivity.this, res.getString("message")));

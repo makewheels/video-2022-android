@@ -12,13 +12,14 @@ public class HttpUtils {
     private static Boolean isDevEnv;
 
     public static String getDevPcIpAddress() {
-        return "10.187.19.136";
+        return "192.168.1.3";
     }
 
     public static boolean isDevEnv() {
-        if (isDevEnv != null) return isDevEnv;
-        isDevEnv = System.getProperty("os.arch").equals("i686");
-        return isDevEnv;
+//        if (isDevEnv != null) return isDevEnv;
+//        isDevEnv = System.getProperty("os.arch").equals("i686");
+//        return isDevEnv;
+        return true;
     }
 
     public static String getBaseUrl() {
