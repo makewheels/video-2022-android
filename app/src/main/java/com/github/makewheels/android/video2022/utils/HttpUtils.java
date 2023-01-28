@@ -1,5 +1,7 @@
 package com.github.makewheels.android.video2022.utils;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
@@ -32,8 +34,9 @@ public class HttpUtils {
         HttpRequest request = HttpUtil.createGet(getBaseUrl() + url);
         request.timeout(10 * 1000);
         request.header("token", TokenUtil.get());
-        HttpResponse response = request.execute();
-        return JSON.parseObject(response.body());
+        String response = request.execute().body();
+        Log.e("tag", response);
+        return JSON.parseObject(response);
     }
 
     public static JSONObject post(String url, String body) {
@@ -41,7 +44,8 @@ public class HttpUtils {
         request.timeout(10 * 1000);
         request.header("token", TokenUtil.get());
         request.body(body);
-        HttpResponse response = request.execute();
-        return JSON.parseObject(response.body());
+        String response = request.execute().body();
+        Log.e("tag", response);
+        return JSON.parseObject(response);
     }
 }
