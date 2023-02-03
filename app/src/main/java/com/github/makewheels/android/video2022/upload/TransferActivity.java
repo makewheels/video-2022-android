@@ -49,7 +49,7 @@ public class TransferActivity extends AppCompatActivity {
             }
             new Thread(() -> {
                 JSONObject request = new JSONObject();
-                request.put("type", "YOUTUBE");
+                request.put("videoType", "YOUTUBE");
                 request.put("youtubeUrl", youtubeUrl);
                 JSONObject response = HttpUtils.post("/video/create", request.toJSONString());
                 JSONObject data = response.getJSONObject("data");
