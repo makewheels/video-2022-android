@@ -24,7 +24,7 @@ public class HttpUtils {
             if (isDevEnv()) {
                 baseUrl = "http://192.168.1.3:5022";
             } else {
-                baseUrl = "https://videoplus.top";
+                baseUrl = "https://oneclick.video";
             }
         }
         return baseUrl;
