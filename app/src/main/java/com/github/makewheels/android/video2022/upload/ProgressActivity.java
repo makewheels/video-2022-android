@@ -142,7 +142,8 @@ public class ProgressActivity extends AppCompatActivity {
         //创建视频
         JSONObject createRequest = new JSONObject();
         createRequest.put("videoType", "USER_UPLOAD");
-        createRequest.put("originalFilename", filename);
+        createRequest.put("rawFilename", filename);
+        createRequest.put("size", size);
         JSONObject createResponse = HttpUtils.post("/video/create", createRequest.toJSONString());
         JSONObject createResponseData = createResponse.getJSONObject("data");
         videoId = createResponseData.getString("videoId");
