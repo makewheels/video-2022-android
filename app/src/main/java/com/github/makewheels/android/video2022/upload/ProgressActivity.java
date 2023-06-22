@@ -187,9 +187,9 @@ public class ProgressActivity extends AppCompatActivity {
         }
 
         //通知文件上传完成
-        HttpUtils.get("/file/rawFileUploadFinish?fileId=" + fileId);
+        HttpUtils.get("/file/uploadFinish?fileId=" + fileId);
         //通知视频源文件上传完成
-        HttpUtils.get("/video/originalFileUploadFinish?videoId=" + videoId);
+        HttpUtils.get("/video/rawFileUploadFinish?videoId=" + videoId);
         runOnUiThread(() -> ToastUtil.success(this, "Upload finished!"));
     }
 }
