@@ -22,7 +22,7 @@ public class HttpUtils {
     public static String getBaseUrl() {
         if (baseUrl == null) {
             if (isDevEnv()) {
-                baseUrl = "http://192.168.1.4:5022";
+                baseUrl = "http://192.168.1.3:5022";
             } else {
                 baseUrl = "https://oneclick.video";
             }
